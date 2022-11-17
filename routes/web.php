@@ -31,3 +31,9 @@ Route::get('/edit/{id}', [PegawaiController::class, 'edit'])->name('pegawai.edit
 Route::post('/update/{id}', [PegawaiController::class, 'update'])->name('pegawai.update');
 
 Route::get('/delete/{id}', [PegawaiController::class, 'delete'])->name('pegawai.delete');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['auth', 'admin'])->group(function ()
+ {Route::get('admin', function () { return 'admin page'; });
+});
